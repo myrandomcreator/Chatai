@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Back | Login</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      color: #f8fafc;
+      background:
+        radial-gradient(circle at top left, #23356b 0, transparent 38%),
+        linear-gradient(135deg, #080d1c, #10182c 65%, #080d1c);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 36px 30px;
+      background: rgba(17, 26, 47, .92);
+      border: 1px solid #293752;
+      border-radius: 22px;
+      box-shadow: 0 25px 70px #0006;
+    }
+
+    .logo {
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      border-radius: 15px;
+      background: #4f70f5;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    h1 { margin: 0 0 10px; font-size: 29px; }
+    .subtitle { color: #9caac2; line-height: 1.6; margin-bottom: 28px; }
+    label { display: block; margin: 18px 0 9px; font-size: 14px; }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #34435e;
+      border-radius: 10px;
+      outline: none;
+      background: #0c1426;
+      color: white;
+      font-size: 15px;
+    }
+
+    input:focus { border-color: #6c85ff; }
+    input::placeholder { color: #72809a; }
+
+    .password-wrap { position: relative; }
+    .password-wrap input { padding-right: 75px; }
+
+    .toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 0;
+      background: none;
+      color: #a9b8d2;
+      cursor: pointer;
+    }
+
+    .options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 24px;
+      font-size: 13px;
+    }
+
+    .remember {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #c3cde0;
+    }
+
+    .remember input { width: 15px; height: 15px; }
+    a { color: #8da3ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .submit {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: #5875f7;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .submit:hover { background: #4563eb; }
+    .message { color: #fbbf24; font-size: 13px; line-height: 1.5; }
+    .signup { text-align: center; margin-top: 25px; color: #a7b4ca; font-size: 14px; }
+    .footer { text-align: center; margin-top: 25px; color: #64748b; font-size: 12px; }
+
+    @media (max-width: 420px) {
+      .card { padding: 28px 22px; }
+      h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo" aria-hidden="true">L</div>
+
+    <h1>Welcome back</h1>
+    <p class="subtitle">Sign in to your account to continue.</p>
+
+    <form id="loginForm">
+      <label for="identity">Email or username</label>
+      <input
+        id="identity"
+        name="identity"
+        type="text"
+        placeholder="Enter your email or username"
+        autocomplete="username"
+        required
+      >
+
+      <label for="password">Password</label>
+      <div class="password-wrap">
+        <input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+          required
+        >
+        <button class="toggle" type="button" id="togglePassword"
+          aria-controls="password" aria-pressed="false">Show</button>
+      </div>
+
+      <div class="options">
+        <label class="remember" style="margin:0">
+          <input type="checkbox" id="remember">
+          Remember me
+        </label>
+        <a href="forgot-password.html">Forgot password?</a>
+      </div>
+
+      <button class="submit" type="submit">Sign In</button>
+      <p class="message" id="message" role="status"></p>
+    </form>
+
+    <p class="signup">
+      Don't have an account?
+      <a href="signup.html">Create account</a>
+    </p>
+
+    <div class="footer">Secure access · Your account matters</div>
+  </main>
+
+  <script>
+    const password = document.getElementById("password");
+    const toggle = document.getElementById("togglePassword");
+
+    toggle.addEventListener("click", () => {
+      const show = password.type === "password";
+      password.type = show ? "text" : "password";
+      toggle.textContent = show ? "Hide" : "Show";
+      toggle.setAttribute("aria-pressed", String(show));
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      document.getElementById("message").textContent =
+        "Demo only: connect a secure authentication backend to sign in.";
+    });
+  </script>
+</body>
+</html>
